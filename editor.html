@@ -1,0 +1,292 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+  <head>
+
+    <meta charset="utf-8">
+    <title></title>
+    <!-- Fonts and CSS Reset -->
+      <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Open+Sans:300,400,600,700">
+      <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/normalize/8.0.0/normalize.min.css">
+
+<!-- PrismJS: Syntax Highlighting -->
+      <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.13.0/themes/prism.min.css">
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.13.0/prism.min.js"></script>
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.13.0/plugins/normalize-whitespace/prism-normalize-whitespace.js"></script>
+
+      <!-- Font Awesome -->
+      <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.6.3/css/all.css" integrity="sha384-UHRtZLI+pbxtHCWp1t77Bi1L4ZtiqrqD80Kn4Z8NTSRyMA2Fd33n5dQ8lWUE00s/" crossorigin="anonymous">
+
+      <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.0.9/css/solid.css">
+      <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.0.9/css/fontawesome.css">
+      <link rel="stylesheet" type="text/css" href="loading.css"/>
+      <link rel="stylesheet" type="text/css" href="loading-btn.css"/>
+
+      <!-- Mustard UI -->
+      <link rel="stylesheet" href="https://unpkg.com/mustard-ui@latest/dist/css/mustard-ui.min.css">
+      <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+      <script src="form.js" type="text/javascript"></script>
+      <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+      <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+
+
+      <style>
+          * {box-sizing: border-box}
+
+          .ScoreBarcontainer {
+            width: 100%;
+            background-color: #ddd;
+          }
+
+          .skills {
+            text-align: right;
+            padding: 10px;
+            color: white;
+          }
+
+          .poor {width: 90%; background-color: #ff4e50;}
+          .fair {width: 80%; background-color: #f8ca00;}
+          .good {width: 60%; background-color: #3ac569;}
+
+          </style>
+  </head>
+  <body>
+    <div class="main_content">
+<!--
+========================================================================================
+Header Div.
+========================================================================================
+
+-->
+<nav>
+  <div class="nav-container">
+    <div class="nav-logo">
+      <a href="exam.html" align="left"><i class="fa fa-home" aria-hidden="true"></i></a>
+    </div>
+  </div>
+</nav>
+<!--
+======================================================================================
+This Div is for the Buttons. When user click on buttons, respective field will appear.
+=======================================================================================
+-->
+<section>
+
+<h1 class="h2">Exam Creator</h1>
+<div class="two">
+
+<!--button onclick="emailFunction()">Multiple Choice</button>
+<button onclick="contactFunction()">Passage Completion</button>
+<button onclick="textareaFunction()">Cloze</button>
+<button onclick="textareaFunction()">Reading Comprehension</button>
+<button onclick="textareaFunction()">Translation</button>
+<button onclick="resetElements()">reset</button-->
+</div>
+<!--
+========================================================================================
+This Div is meant to display final form.
+========================================================================================
+-->
+<div class="" id="defaultPanel">
+
+
+<div class="panel" id="1">
+
+    <div class="panel-head">
+
+        <div class="form-control">
+          <label>Question Type</label>
+          <select id="question" onchange="show('');">
+            <option value="voc">Vocabulary</option>
+            <option value="multiple">Multiple Choice</option>
+            <option value="passage">Passage Completion</option>
+            <option value="cloze">Cloze</option>
+            <option value="reading">Reading Comprehension</option>
+            <option value="translation">Translation</option>
+          </select>
+        </div>
+
+    </div>
+    <div class="panel-body">
+      <div class="" id="Qvoc" style="">
+        <div class="form-control-group">
+          <div class="form-control grow-2x">
+            <label>Question</label>
+            <input type="text" placeholder="question" value="Posters of the local rock band were displayed in store windows to promote the sale of their c_____t tickets.">
+          </div>
+
+          <div class="form-control">
+            <label>Answer</label>
+            <input type="text" placeholder="answer" value="concert">
+          </div>
+        </div>
+      </div>
+
+      <div class="" id="Qmultiple" style="display:none;">
+
+
+          <div class="form-control">
+            <label>Question</label>
+            <input type="text" placeholder="question">
+          </div>
+          <div class="form-control-group">
+            <fieldset>
+              <legend>option</legend>
+              <div class="form-control">
+                <label>A</label>
+                <input type="text">
+              </div>
+                <button type="button" name="button">add</button>
+
+            </fieldset>
+          </div>
+            <div class="form-control">
+              <label>Answer</label>
+              <input type="text" placeholder="Answer">
+            </div>
+
+      </div>
+
+      <div class="" id="Qpassage" style="display:none;">
+        <div class="form-control">
+          <label>Passage</label>
+          <textarea placeholder="passage..."></textarea>
+        </div>
+
+        <div class="form-control-group">
+          <fieldset>
+            <legend>#1</legend>
+            <div class="form-control">
+              <label>A</label>
+              <input type="text">
+            </div>
+              <button type="button" name="button">add option</button>
+              <div class="form-control">
+                <label>Answer</label>
+                <input type="text" placeholder="Answer">
+              </div>
+          </fieldset>
+        </div>
+        <br>
+        <div class="form-control">
+          <button type="button" name="button">add question</button>
+        </div>
+      </div>
+
+      <div class="" id="Qcloze" style="display:none;">
+        <div class="form-control">
+          <label>Passage</label>
+          <textarea placeholder="passage..."></textarea>
+        </div>
+
+        <div class="form-control-group">
+          <fieldset>
+            <legend>option</legend>
+            <div class="form-control">
+              <label>A</label>
+              <input type="text">
+            </div>
+                <button type="button" name="button">add option</button>
+          </fieldset>
+        </div>
+        <div class="form-control">
+          <label>Answer</label>
+          <input type="text" placeholder="example:BACDE....">
+        </div>
+      </div>
+
+      <div id="Qreading" style="display:none;">
+        <div class="form-control">
+          <label>Passage</label>
+          <textarea placeholder="passage..."></textarea>
+        </div>
+
+        <div class="form-control">
+          <label>Question</label>
+          <input type="text" placeholder="question">
+        </div>
+        <div class="form-control-group">
+          <fieldset>
+            <legend>option</legend>
+            <div class="form-control">
+              <label>A</label>
+              <input type="text">
+            </div>
+              <button type="button" name="button">add</button>
+
+          </fieldset>
+        </div>
+          <div class="form-control">
+            <label>Answer</label>
+            <input type="text" placeholder="Answer">
+          </div>
+
+          <div class="form-control">
+            <button type="button" name="button">add question</button>
+          </div>
+      </div>
+
+      <div class="" id="Qtranslation" style="display:none;">
+          <h5>#1</h5>
+          <div class="form-control">
+            <label>Question</label>
+            <input type="text" placeholder="question">
+          </div>
+
+          <div class="form-control">
+            <label>Answer</label>
+            <input type="text" placeholder="answer">
+          </div>
+      </div>
+
+    </div>
+    <div class="panel-footer">
+      <div class="row">
+        <button class="button-primary" onclick="move()">test</button>
+        <script>
+          function move() {
+          var elem = document.getElementById("myBar");
+          document.getElementById('pgs').style.display = "block";
+          var width = 20;
+          var id = setInterval(frame, 10);
+          function frame() {
+            if (width >= 100) {
+              clearInterval(id);
+              document.getElementById('pgs').style.display="none";
+              document.getElementById('testresult').style.display= "block";
+            } else {
+              width++;
+              elem.style.width = width + '%';
+              elem.innerHTML = width * 1  + '%';
+            }
+          }
+        }
+        </script>
+        <button class="button-primary-text" onclick="removeElement('defaultPanel','1')">delete</button>
+      </div>
+    </div>
+</div>
+<div class="w3-light-grey" id="pgs" style="display:none;">
+  <div id="myBar" class="w3-container w3-green w3-center" style="width:0;">0%</div>
+</div>
+<div class="container" id="testresult" style="display:none;">
+  <div class="ScoreBarcontainer">
+    <div class="skills good" style="width:44%;">44</div>
+  </div>
+
+</div>
+</div>
+
+<div class="" id="dynamicInput">
+
+</div>
+<div class="three">
+  <br>
+  <!--button onclick="addInput()" class="button-primary button-round button-shadow"><i class="fa fa-plus" aria-hidden="true"></i> Add Question</button-->
+
+</div>
+<a name='btm'></a>
+<br>
+<button type="submit" name="button" class="button-primary" style="width:100%;" onclick="window.location.href='detail2.html'">Done</button>
+</section>
+  </body>
+</html>

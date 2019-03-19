@@ -1,0 +1,241 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+  <head>
+    <meta charset="utf-8">
+    <title></title>
+    <!-- Fonts and CSS Reset -->
+<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Open+Sans:300,400,600,700">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/normalize/8.0.0/normalize.min.css">
+
+<!-- PrismJS: Syntax Highlighting -->
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.13.0/themes/prism.min.css">
+<script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.13.0/prism.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.13.0/plugins/normalize-whitespace/prism-normalize-whitespace.js"></script>
+
+<!-- Font Awesome -->
+<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.0.9/css/solid.css">
+<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.0.9/css/fontawesome.css">
+
+<!-- Mustard UI -->
+<link rel="stylesheet" href="https://unpkg.com/mustard-ui@latest/dist/css/mustard-ui.min.css">
+<script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.7.3/Chart.min.js" language="JavaScript"></script>
+<style media="screen">
+  .bar-1 {width: 15%; height: 18px; background-color: rgba(255, 99, 132, 0.2);borderColor:rgba(255,99,132,1);borderWidth: 1;}
+</style>
+<style>
+    * {box-sizing: border-box}
+
+    .ScoreBarcontainer {
+      width: 100%;
+      background-color: #ddd;
+    }
+
+    .skills {
+      text-align: right;
+      padding: 10px;
+      color: white;
+    }
+
+    .poor {width: 100%; background-color:rgba(255,99,132,1);}
+
+
+    </style>
+
+  </head>
+  <body>
+    <nav>
+      <div class="nav-container">
+        <div class="nav-logo">
+          <a href="exam.html"><i class="fa fa-home" aria-hidden="true"></i></a>
+        </div>
+      </div>
+    </nav>
+    <section class="section-tertiary">
+      <div class="row">
+        <h1 class="h2">Detail</h1>
+        <button align="right" class="button-primary" onclick="window.location.href='result2.html'">Back</button>
+      </div>
+
+      <div class="row">
+        <div class="col col-sm-5">
+          <p>*The lower the better</p>
+          <h6>Overall<span class="tooltip"><i class="fa fa-info-circle" aria-hidden="true"></i><span class="tooltip-text" style="position:right;"> How easy you can find the answer overall. This score is the average of the two: Easiness and Similarity.
+
+          </span></span></h6>          <canvas id="canvas" width="1000" height="200" style="top:0px;"></canvas>
+
+          <script type="text/javascript">
+            var hor = {
+			           labels: [''],
+			           datasets: [{
+				               label: '',
+				               backgroundColor: ["rgba(75, 192, 75, 0.2)",],
+				               borderColor: ['rgba(75,192,75,1)'],
+				               borderWidth: 1,
+				               data: [44]
+			}]
+		};
+    var ctx2 = document.getElementById("canvas");
+    var horchart = new Chart(ctx2, {
+      type: 'horizontalBar',
+      data: hor,
+      options:{
+        gridLines:{
+          display:false,
+          drawBorder:false
+        },
+        title:"",
+        legend:{
+          display:false,
+        },
+        scales:{
+          yAxes:[{
+            ticks:{
+              beginAtZero:true
+            }
+          }],
+          xAxes:[{
+            ticks:{
+              min:0,
+              max:100,
+              beginAtZero:true
+            }
+          }]
+        }
+      }
+    });
+          </script>
+
+
+            <br>
+              <h6>Similarity:How similar they are between the original and similar questions<span class="tooltip"><i class="fa fa-info-circle" aria-hidden="true"></i><span class="tooltip-text">The Similarity is to simulate when students search on the web or question database for that question,
+              how similar between the questions they can find and the original question.
+              If the found questions are exactly the same or quite similar to the original one,
+              students can just copy the answer from found questions.</span></span></h6>
+
+              <canvas id="canvassim" width="1000" height="200" style="top:0px;"></canvas>
+              <script type="text/javascript">
+                var hor3 = {
+                     labels: [''],
+                     datasets: [{
+                           label: '',
+                           backgroundColor: ['rgba(75, 192, 75, 0.2)',],
+                           borderColor: ['rgba(75, 192, 75, 1)'],
+                           borderWidth: 1,
+                           data: [12]
+          }]
+        };
+        var ctx3 = document.getElementById("canvassim");
+        var horchart3 = new Chart(ctx3, {
+          type: 'horizontalBar',
+          data: hor3,
+          options:{
+            gridLines:{
+              display:false,
+              drawBorder:false
+            },
+            title:"",
+            legend:{
+              display:false,
+            },
+            scales:{
+              yAxes:[{
+                ticks:{
+                  min:0,
+                  max:100,
+                  beginAtZero:true
+                }
+              }],
+              xAxes:[{
+                ticks:{
+                  min:0,
+                  max:100,
+                  beginAtZero:true
+                }
+              }]
+            }
+          }
+        });
+              </script>
+              <h6>Easiness:How easy it is for AI system to answer this question<span class="tooltip"><i class="fa fa-info-circle" aria-hidden="true"></i><span class="tooltip-text">      The Easiness is to show how easy is for exam question answering apps to answer this question.
+    </span></span></h6>
+
+                <canvas id="myChart" width="1000" height="200" style="top:0px;"></canvas>
+          <script type="text/javascript">
+            var barChartData = {
+			           labels: ['overwhelmed', 'convicing', 'touched', 'happy'],
+			           datasets: [{
+				               label: 'option',
+				               backgroundColor: ['rgba(255, 206, 86, 0.2)',"rgba(75, 192, 75, 0.2)","rgba(75, 192, 75, 0.2)","rgba(75, 192, 75, 0.2)",],
+				               borderColor: ['rgba(255, 206, 86, 1)',"rgba(75, 192, 75, 1)","rgba(75, 192, 75, 1)","rgba(75, 192, 75, 1)",],
+				               borderWidth: 1,
+				               data: [76,7,15,2]
+			}]
+		};
+    var ctx = document.getElementById("myChart");
+    var myChart = new Chart(ctx, {
+      type: 'bar',
+      data: barChartData,
+      options:{
+        title:"",
+        legend:{
+          display:false,
+        },
+        scales:{
+          xAxes:[{
+            scaleLabel:{
+              display:true,
+              labelString:"(%)",
+            },ticks:{
+              xAxes:[{
+                ticks:{
+                  min:0,
+                  max:100,
+                  beginAtZero:true
+                }
+              }]
+            }
+          }],
+          yAxes:[{
+            ticks:{
+              beginAtZero:true
+            }
+          }]
+        }
+      }
+    });
+          </script>
+
+        </div>
+
+        <div class="col col-sm-1">
+
+        </div>
+        <div class="col col-sm-5">
+          <h5>Original Question</h5>
+          <p>Jocelyne was o________med by the feeling of guilt because she lied to her parents.</p>
+          <button class="button-warning"onclick="window.location.href='editor.html'">Edit</button>
+<h5>Similar Questions</h5>
+          <p></p>
+          <p>1.</p>
+          <p>Angelo <font color="red">lied to his parents </font>on his final exam grade <font color="red">because</font> he m___sed it up.  ---<b>messed</b></p>
+          <p>2.</p>
+          <p>Jocelyne's <font color="red">parents</font> were a____yed that <font color="red">she was</font> impolite <font color="red">to her </font>aunt and uncle. ---<b>annoyed</b></p>
+
+            <p>3.</p>
+            <p>When we <font color="red"> feel guilty </font>we need <font color="red">to</font> learn <font color="red">that it </font> is okay <font color="red">to</font> make mistakes. ... This need <font color="red">to</font> be “all good” may have started <font color="red">because your parents</font> or other ..... </p>
+            <p>4.</p>
+            <p>sometimes severely, <font color="red">the feelings of guilt </font>and shame can be
+            <font color="red">overwhelming</font>. .... my son says, he severely punishes my son and forces my boy to <font color="red">lie</font> o him.</p>
+            <p>5.</p>
+            <p>Jack <font color="red">was</font> really angry about his <font color="red">p____ts because</font> they did not give him any allowance. ---<b>parents</b></p>
+
+
+
+        </div>
+
+      </div>
+    </section>
+
+
+  </body>
+</html>

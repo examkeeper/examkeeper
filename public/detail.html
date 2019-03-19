@@ -1,0 +1,231 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+  <head>
+    <meta charset="utf-8">
+    <title></title>
+    <!-- Fonts and CSS Reset -->
+<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Open+Sans:300,400,600,700">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/normalize/8.0.0/normalize.min.css">
+
+<!-- PrismJS: Syntax Highlighting -->
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.13.0/themes/prism.min.css">
+<script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.13.0/prism.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.13.0/plugins/normalize-whitespace/prism-normalize-whitespace.js"></script>
+
+<!-- Font Awesome -->
+<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.0.9/css/solid.css">
+<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.0.9/css/fontawesome.css">
+
+<!-- Mustard UI -->
+<link rel="stylesheet" href="https://unpkg.com/mustard-ui@latest/dist/css/mustard-ui.min.css">
+<script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.7.3/Chart.min.js" language="JavaScript"></script>
+<style media="screen">
+  .bar-1 {width: 15%; height: 18px; background-color: rgba(255, 99, 132, 0.2);borderColor:rgba(255,99,132,1);borderWidth: 1;}
+</style>
+<style>
+    * {box-sizing: border-box}
+
+    .ScoreBarcontainer {
+      width: 100%;
+      background-color: #ddd;
+    }
+
+    .skills {
+      text-align: right;
+      padding: 10px;
+      color: white;
+    }
+
+    .poor {width: 100%; background-color:rgba(255,99,132,1);}
+
+
+    </style>
+
+  </head>
+  <body>
+    <nav>
+      <div class="nav-container">
+        <div class="nav-logo">
+          <a href="exam.html"><i class="fa fa-home" aria-hidden="true"></i></a>
+        </div>
+      </div>
+    </nav>
+    <section class="section-tertiary">
+      <div class="row">
+        <h1 class="h2">Detail</h1>
+        <button align="right" class="button-primary" onclick="window.location.href='result.html'">Back</button>
+      </div>
+
+      <div class="row">
+        <div class="col col-sm-5">
+          <p>*The lower the better</p>
+          <h6>Overall<span class="tooltip"><i class="fa fa-info-circle" aria-hidden="true"></i><span class="tooltip-text" style="position:right;"> How easy you can find the answer overall. This score is the average of the two: Easiness and Similarity.
+
+          </span></span></h6>          <canvas id="canvas" width="1000" height="200" style="top:0px;"></canvas>
+
+          <script type="text/javascript">
+            var hor = {
+			           labels: [''],
+			           datasets: [{
+				               label: '',
+				               backgroundColor: ["rgba(255, 99, 132, 0.2)",],
+				               borderColor: ['rgba(255,99,132,1)'],
+				               borderWidth: 1,
+				               data: [96]
+			}]
+		};
+    var ctx2 = document.getElementById("canvas");
+    var horchart = new Chart(ctx2, {
+      type: 'horizontalBar',
+      data: hor,
+      options:{
+        gridLines:{
+          display:false,
+          drawBorder:false
+        },
+        title:"",
+        legend:{
+          display:false,
+        },
+        scales:{
+          yAxes:[{
+            ticks:{
+              beginAtZero:true
+            }
+          }],
+          xAxes:[{
+            ticks:{
+              min:0,
+              max:100,
+              beginAtZero:true
+            }
+          }]
+        }
+      }
+    });
+          </script>
+
+
+            <br>
+              <h6>Similarity:How similar they are between the original and similar questions<span class="tooltip"><i class="fa fa-info-circle" aria-hidden="true"></i><span class="tooltip-text">The Similarity is to simulate when students search on the web or question database for that question,
+              how similar between the questions they can find and the original question.
+              If the found questions are exactly the same or quite similar to the original one,
+              students can just copy the answer from found questions.</span></span></h6>
+
+              <canvas id="canvassim" width="1000" height="200" style="top:0px;"></canvas>
+              <script type="text/javascript">
+                var hor3 = {
+                     labels: [''],
+                     datasets: [{
+                           label: '',
+                           backgroundColor: ["rgba(255, 99, 132, 0.2)",],
+                           borderColor: ['rgba(255,99,132,1)'],
+                           borderWidth: 1,
+                           data: [100]
+          }]
+        };
+        var ctx3 = document.getElementById("canvassim");
+        var horchart3 = new Chart(ctx3, {
+          type: 'horizontalBar',
+          data: hor3,
+          options:{
+            gridLines:{
+              display:false,
+              drawBorder:false
+            },
+            title:"",
+            legend:{
+              display:false,
+            },
+            scales:{
+              yAxes:[{
+                ticks:{
+                  min:0,
+                  max:100,
+                  beginAtZero:true
+                }
+              }],
+              xAxes:[{
+                ticks:{
+                  min:0,
+                  max:100,
+                  beginAtZero:true
+                }
+              }]
+            }
+          }
+        });
+              </script>
+              <h6>Easiness:How easy it is for AI system to answer this question<span class="tooltip"><i class="fa fa-info-circle" aria-hidden="true"></i><span class="tooltip-text">      The Easiness is to show how easy is for exam question answering apps to answer this question.
+    </span></span></h6>
+
+                <canvas id="myChart" width="1000" height="200" style="top:0px;"></canvas>
+          <script type="text/javascript">
+            var barChartData = {
+			           labels: ['journey', 'traffic', 'concert', 'record'],
+			           datasets: [{
+				               label: 'option',
+				               backgroundColor: ["rgba(75, 192, 75, 0.2)","rgba(75, 192, 75, 0.2)","rgba(255, 99, 132, 0.2)","rgba(75, 192, 75, 0.2)",],
+				               borderColor: ["rgba(75, 192, 75, 1)","rgba(75, 192, 75, 1)","rgba(255, 99, 132, 1)","rgba(75, 192, 75, 1)",],
+				               borderWidth: 1,
+				               data: [5,1,92,2]
+			}]
+		};
+    var ctx = document.getElementById("myChart");
+    var myChart = new Chart(ctx, {
+      type: 'bar',
+      data: barChartData,
+      options:{
+        title:"",
+        legend:{
+          display:false,
+        },
+        scales:{
+          xAxes:[{
+            ticks:{
+              xAxes:[{
+                ticks:{
+                  min:0,
+                  max:100,
+                  beginAtZero:true
+                }
+              }]
+            }
+          }],
+          yAxes:[{
+            scaleLabel:{
+              display:true,
+              labelString:"(%)",
+            },
+            ticks:{
+              beginAtZero:true
+            }
+          }]
+        }
+      }
+    });
+          </script>
+
+        </div>
+
+        <div class="col col-sm-1">
+
+        </div>
+        <div class="col col-sm-5">
+          <h5>Original Question</h5>
+          <p>Posters of the local rock band were displayed in store windows to promote the sale of their c_____t tickets.</p>
+          <button class="button-warning"onclick="window.location.href='editor.html'">Edit</button>
+<h5>Similar Questions</h5>
+          <p></p>
+
+          <p><font color="red">Posters of the local rock band were displayed in store windows to promote the sale of their _____ tickets.</font>  ---<b>concert</b>
+           </p>
+
+        </div>
+
+      </div>
+    </section>
+
+
+  </body>
+</html>

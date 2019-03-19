@@ -1,0 +1,336 @@
+<html>
+    <head>
+        <title>Exam Keeper</title>
+        <meta charset="utf-8" />
+        <!--{% load static %}-->
+        <meta name="viewport" content="width=device-width, initial-scale=1" />
+        <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.6.3/css/all.css" integrity="sha384-UHRtZLI+pbxtHCWp1t77Bi1L4ZtiqrqD80Kn4Z8NTSRyMA2Fd33n5dQ8lWUE00s/" crossorigin="anonymous">
+        <!-- Fonts and CSS Reset -->
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Open+Sans:300,400,600,700">
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/normalize/8.0.0/normalize.min.css">
+
+        <!-- PrismJS: Syntax Highlighting -->
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.13.0/themes/prism.min.css">
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.13.0/prism.min.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.13.0/plugins/normalize-whitespace/prism-normalize-whitespace.js"></script>
+
+        <!-- Font Awesome >
+        <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.0.9/css/solid.css">
+        <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.0.9/css/fontawesome.css"-->
+
+        <!-- Mustard UI -->
+        <link rel="stylesheet" href="https://unpkg.com/mustard-ui@latest/dist/css/mustard-ui.min.css">
+        <script src="http://d3js.org/d3.v3.min.js" language="JavaScript"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.7.3/Chart.min.js" language="JavaScript"></script>
+        <style>
+            * {box-sizing: border-box}
+
+            .ScoreBarcontainer {
+              width: 100%;
+              background-color: #ddd;
+            }
+
+            .skills {
+              text-align: right;
+              padding: 10px;
+              color: white;
+            }
+
+            .poor {width: 90%; background-color: #ff4e50;}
+            .fair {width: 80%; background-color: #f8ca00;}
+            .good {width: 60%; background-color: #3ac569;}
+
+            </style>
+
+        <style media="screen">
+          #overlay {
+  position: fixed; /* Sit on top of the page content */
+  display: none; /* Hidden by default */
+  width: 100%; /* Full width (cover the whole page) */
+  height: 100%; /* Full height (cover the whole page) */
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: rgba(255,255,255,1); /* Black background with opacity */
+  z-index: 2; /* Specify a stack order in case you're using a different order for other elements */
+  cursor: pointer; /* Add a pointer on hover */
+}
+#text{
+  position: absolute;
+  top: auto;
+  left: auto;
+  font-size: 50px;
+  color: white;
+  transform: translate(-50%,-50%);
+  -ms-transform: translate(-50%,-50%);
+}
+
+        </style>
+
+    </head>
+
+    <body>
+      <nav>
+        <div class="nav-container">
+          <div class="nav-logo">
+            <a href="exam.html"><i class="fa fa-home" aria-hidden="true"></i></a>
+          </div>
+        </div>
+      </nav>
+      <script type="text/javascript">
+        function on() {
+  document.getElementById("overlay").style.display = "block";
+}
+
+function off() {
+  document.getElementById("overlay").style.display = "none";
+}
+      </script>
+      <script>
+function myFunction() {
+  var x = document.getElementById("myth");
+  if (x.style.display === "none") {
+    x.style.display = "block";
+  } else {
+    x.style.display = "none";
+  }
+}
+
+</script>
+
+<section>
+  <div class="row">
+      <h1 class="h2">Result</h1>
+
+      <div class="col-sm-1">
+
+      </div>
+      <div class="form-control">
+    <label>filter<i class="fa fa-filter" aria-hidden="true"></i></label>
+    <select id="ChangeInfo" onchange="ChangeData()">
+        <option value="all">ALL</option>
+        <option value="voc">Vocabulary</option>
+
+    </select>
+    </div>
+    <div class="col-sm-offset-1" id="Showscore">
+        <h3>Average For All Questions’ Overall Scores:96</h3>
+    </div>
+
+
+
+          <canvas id="myChart" width="1000" height="200" style="top:0px;"></canvas>
+
+      <script>
+      var all = {
+        labels:[['id#1','Vocabulary']],
+        datasets:[{
+        data:[96],
+        backgroundColor:["rgba(255, 99, 132, 0.2)","rgba(255, 99, 132, 0.2)","rgba(255, 99, 132, 0.2)",
+                          'rgba(54, 162, 235, 0.2)','rgba(54, 162, 235, 0.2)',
+                        'rgba(255, 206, 86, 0.2)','rgba(255, 206, 86, 0.2)','rgba(255, 206, 86, 0.2)','rgba(255, 206, 86, 0.2)','rgba(255, 206, 86, 0.2)',
+                      'rgba(75, 192, 192, 0.2)','rgba(75, 192, 192, 0.2)','rgba(75, 192, 192, 0.2)','rgba(75, 192, 192, 0.2)','rgba(75, 192, 192, 0.2)','rgba(75, 192, 192, 0.2)','rgba(75, 192, 192, 0.2)','rgba(75, 192, 192, 0.2)','rgba(75, 192, 192, 0.2)','rgba(75, 192, 192, 0.2)',
+                      'rgba(153, 102, 255, 0.2)','rgba(153, 102, 255, 0.2)','rgba(153, 102, 255, 0.2)','rgba(153, 102, 255, 0.2)',
+                      'rgba(0, 93, 0, 0.2)',
+                      'rgba(255, 159, 64, 0.2)','rgba(255, 159, 64, 0.2)',],
+        borderColor:["rgba(255, 99, 132, 1)","rgba(255, 99, 132, 1)","rgba(255, 99, 132, 1)",
+                          'rgba(54, 162, 235, 1)','rgba(54, 162, 235, 1)',
+                        'rgba(255, 206, 86, 1)','rgba(255, 206, 86, 1)','rgba(255, 206, 86, 1)','rgba(255, 206, 86, 1)','rgba(255, 206, 86, 1)',
+                      'rgba(75, 192, 192, 1)','rgba(75, 192, 192, 1)','rgba(75, 192, 192, 1)','rgba(75, 192, 192, 1)','rgba(75, 192, 192, 1)','rgba(75, 192, 192, 1)','rgba(75, 192, 192, 1)','rgba(75, 192, 192, 1)','rgba(75, 192, 192, 1)','rgba(75, 192, 192,1)',
+                      'rgba(153, 102, 255, 1)','rgba(153, 102, 255, 1)','rgba(153, 102, 255, 1)','rgba(153, 102, 255, 1)',
+                      'rgba(0, 93, 0, 1)',
+                      'rgba(255, 159, 64, 1)','rgba(255, 159, 64, 1)',],
+        borderWidth:1
+
+      }]};
+      var voc = {
+        labels:['id#1'],
+        datasets:[{
+        label: "Vocabulary",
+        data: [96],
+        backgroundColor:"rgba(255, 99, 132, 0.2)",
+        borderColor:'rgba(255,99,132,1)',
+        borderWidth: 1
+    }]};
+      var multiple = {
+        labels:['id#1','id#2',],
+        datasets:[{
+        label: "Multiple Choices",
+        data: [77, 73,],
+        backgroundColor:'rgba(54, 162, 235, 0.2)',
+        borderColor:'rgba(54, 162, 235, 1)',
+        borderWidth: 1
+      }]};
+      var passage = {
+        labels:['id#1','id#2','id#3','id#4','id#5',],
+        datasets:[{
+        label: "Passage Completion",
+        data: [48, 72, 63,35,87,],
+        backgroundColor:'rgba(255, 206, 86, 0.2)',
+        borderColor:'rgba(255, 206, 86, 1)',
+        borderWidth: 1
+    }]};
+      var cloze = {
+        labels:['id#1','id#2','id#3','id#4','id#5','id#6','id#7','id#8','id#','id#10',],
+        datasets:[{
+        label: "Cloze",
+        data: [82, 84, 85,80,81,86,87,87,34,87,],
+        backgroundColor:'rgba(75, 192, 192, 0.2)',
+        borderColor:'rgba(75, 192, 192, 1)',
+        borderWidth: 1
+    }]};
+    var reading = {
+      labels:['id#1','id#2','id#3','id#4',],
+      datasets:[{
+      label: "Reading",
+      data: [77, 40, 60,55,],
+      backgroundColor:'rgba(153, 102, 255, 0.2)',
+      borderColor:'rgba(153, 102, 255, 1)',
+      borderWidth: 1
+    }]};
+    var fit = {
+      labels:['id#1'],
+      datasets:[{
+      label: "Fit The Best Sentence",
+      data: [76,],
+      backgroundColor:'rgba(0, 93, 0, 0.2)',
+      borderColor:'rgba(0, 93, 0, 1)',
+      borderWidth: 1
+    }]};
+      var translation =
+      {
+        labels:['id#1','id#2',],
+        datasets:[{
+        label: "Translation",
+        data: [92, 95,],
+        backgroundColor:'rgba(255, 159, 64, 0.2)',
+        borderColor:'rgba(255, 159, 64, 1)',
+        borderWidth: 1
+    }]};
+
+var ctx = document.getElementById("myChart");
+var myChart = new Chart(ctx, {
+    type: 'bar',
+    data: all,
+    options: {
+        legend:{
+          display: false,
+        },
+        scales: {
+            yAxes: [{
+                ticks: {
+                    beginAtZero:true
+                }
+            }]
+        }
+    }
+});
+function ChangeData(){
+  var getValue = document.getElementById("ChangeInfo").value;
+  if (getValue == 'all'){
+    myChart.data = all;
+    document.getElementById('Showscore').innerHTML= '<h3>Take Average For All Questions:96</h3>';
+  }else if (getValue == 'voc'){
+    myChart.data = voc;
+    document.getElementById('Showscore').innerHTML= '<h3>Take Average For Vocabulary:96</h3>'
+  }else if (getValue == 'multiple'){
+    myChart.data= multiple;
+    document.getElementById('Showscore').innerHTML= '<h3>Take Average For Multiple Choice:75</h3>';
+  }else if (getValue == 'fit'){
+    myChart.data= fit;
+    document.getElementById('Showscore').innerHTML= '<h3>Take Average For Fit The Best Sentence:76</h3>';
+  }else if (getValue == 'passage'){
+    myChart.data = passage;
+    document.getElementById('Showscore').innerHTML= '<h3>Take Average For Passage Completion:61</h3>';
+  }else if (getValue == 'cloze'){
+    myChart.data = cloze;
+    document.getElementById('Showscore').innerHTML= '<h3>Take Average For Cloze:79.3</h3>';
+  }else if (getValue == 'reading'){
+    myChart.data = reading;
+    document.getElementById('Showscore').innerHTML= '<h3>Take Average For Readings:58</h3>';
+  }else if (getValue == 'translation'){
+    myChart.data = translation;
+    document.getElementById('Showscore').innerHTML= '<h3>Take Average For Translations:93.5</h3>';
+  }
+
+  myChart.update();
+}
+</script>
+    </div>
+  </div>
+    <p class="h4">Vocabulary</p>
+
+  <table>
+    <thead>
+      <tr>
+        <th>id</th>
+        <th>Question</th>
+        <th>How easy you can find the answer</th>
+        <th></th>
+        <th></th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td>
+          <p><strong>#1</strong></p>
+
+        </td>
+        <td>
+          <p class="align-right"><strong><p>Posters of the local rock band were displayed in store windows to promote the sale of their c_____t tickets.</p></strong></p>
+        </td>
+        <td class="align-left">
+          <div class="container">
+            <div class="ScoreBarcontainer">
+              <div class="skills poor" style="width:96%;">96</div>
+            </div>
+
+          </div>
+        </td>
+        <td class="align-right">
+          <button class="button-primary-outlined" onclick="window.location.href='detail.html'">detail</button>
+        </td>
+        <td class="align-right">
+          <button class="button-danger" onclick="on()">delete</button>
+        </td>
+      </tr>
+      </tbody>
+
+    </table>
+
+  <script type="text/javascript">
+    function bye(){
+      document.getElementById('remove').style.display = "none";
+    }
+  </script>
+  <div class="align-right">
+
+  </div>
+  <div class="row">
+    <div class="col col-sm-6">
+      <form class="" action="final.docx" method="post">
+        <button class="button-primary" style="width:100%"><i class="fa fa-download"></i> Download question as .docx</button>
+      </form>
+    </div>
+    <div class="col col-sm-6">
+      <form class="" action="Answer.docx" method="post">
+        <button class="button-primary" style="width:100%"><i class="fa fa-download"></i> Download answer as .docx</button>
+      </form>
+    </div>
+
+
+  </div>
+
+</section>
+
+<!--section>
+  <p class="h3"><strong>Get More</strong></p>
+  <p>These are examples of table styles that are used in Mustard UI.  We like to think of it as a starter CSS framework that actually looks good.  We'd love to hear your feedback!</p>
+  <p>See more examples of <a href="https://mustard-ui.com/docs/tables">CSS Table Styles</a>.</p>
+</section-->
+
+
+
+    </body>
+</html>
