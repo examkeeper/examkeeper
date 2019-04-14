@@ -15,7 +15,7 @@ div {
       <script src='http://code.jquery.com/jquery-1.8.2.min.js'></script>
         <script>
             $(document).ready(function() {
-                var socket = io.connect('https://doraemon.iis.sinica.edu.tw/', {path: "/examkeeper/"});
+                var socket = io.connect('doraemon.iis.sinica.edu.tw/', {path: "/examkeeper/"});
                       // 2
                 socket.on('echoback', function(m) {
                               $('#panel').html($('#panel').html()+'<br>'+m);
